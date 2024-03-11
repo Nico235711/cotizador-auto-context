@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { obtenerDiffYear } from "../helpers";
+import { cotizarMarca, cotizarPlan, formatearDinero, obtenerDiffYear } from "../helpers";
 
 const CotizadorContext = createContext()
 
@@ -32,11 +32,16 @@ export const CotizadorProvider = ({ children }) => {
     resultado -= (resultado * diferencia * .03)
 
     // asíatico: 5%
-    // europeo: 15%
-    // americano: 30%
-
+    // europeo: 30%
+    // americano: 15%
+    resultado *= cotizarMarca(datos.marca)
+    
     // básico: 20%
     // completo: 50%
+    resultado *= cotizarPlan(datos.plan)
+
+    resultado = formatearDinero(resultado)
+    console.log(resultado);    
   }
 
   return (
