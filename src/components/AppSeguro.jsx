@@ -1,6 +1,9 @@
+import { useCotizador } from "../hooks/useCotizador"
 import { Formulario } from "./Formulario"
 
 export const AppSeguro = () => {
+
+  const { cotizacion } = useCotizador()
 
   return (
     <>
@@ -13,6 +16,10 @@ export const AppSeguro = () => {
 
       <main className="bg-white md:w-2/3 lg:w-2/4 rounded-lg shadow mx-auto p-10">
         <Formulario />
+
+        {
+          cotizacion
+        }
       </main>
     </>
   )
