@@ -3,13 +3,16 @@ import { createContext } from "react";
 const CotizadorContext = createContext()
 
 export const CotizadorProvider = ({ children }) => {  
-  <CotizadorContext.Provider
-    value={{
+  
+  return (
+    <CotizadorContext.Provider
+      value={{
 
-    }}
-  >
-    {children}
-  </CotizadorContext.Provider>
+      }}
+    >
+      {children}
+    </CotizadorContext.Provider>
+  )
 }
 
 export default CotizadorContext
