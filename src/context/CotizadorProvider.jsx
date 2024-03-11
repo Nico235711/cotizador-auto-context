@@ -9,6 +9,9 @@ export const CotizadorProvider = ({ children }) => {
     year: "",
     plan: ""
   })
+
+  const [error, setError] = useState("")
+
   const handleChangeData = e => {
     // tomo una copia del objeto para evitar pisar los datos
     setDatos({
@@ -21,7 +24,9 @@ export const CotizadorProvider = ({ children }) => {
     <CotizadorContext.Provider
       value={{
         datos,
-        handleChangeData
+        handleChangeData,
+        error,
+        setError
       }}
     >
       {children}
