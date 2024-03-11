@@ -5,9 +5,16 @@ import { Error } from "./Error"
 
 export const Formulario = () => {
 
-  const { datos, handleChangeData, error, setError } = useCotizador()
+  const {
+    datos,
+    handleChangeData,
+    error,
+    setError,
+    cotizarSeguro
+  } = useCotizador()
 
-  const handleSubmit = e => {  
+  // validar formulario
+  const handleSubmit = e => {
     e.preventDefault()
 
     if (Object.values(datos).includes("")) {
@@ -16,11 +23,14 @@ export const Formulario = () => {
     }
 
     setError("")
+
+    // cotizar seguro
+    cotizarSeguro()
   }
 
   return (
     <>
-      
+
       <form onSubmit={handleSubmit}>
         {
           error && <Error />
@@ -82,7 +92,7 @@ export const Formulario = () => {
                     type="radio"
                     name="plan"
                     id={plan.id}
-                    value={plan.id} 
+                    value={plan.id}
                     onChange={handleChangeData}
                   />
                 </Fragment>
@@ -94,7 +104,7 @@ export const Formulario = () => {
         <input
           type="submit"
           value="Cotizar"
-          className="w-full bg-indigo-700 text-2xl uppercase text-white hover:bg-indigo-800 transition-all cursor-pointer py-3 font-bold" 
+          className="w-full bg-indigo-700 text-2xl uppercase text-white hover:bg-indigo-800 transition-all cursor-pointer py-3 font-bold"
         />
       </form>
     </>
