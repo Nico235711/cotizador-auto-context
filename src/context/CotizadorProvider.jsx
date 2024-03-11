@@ -1,15 +1,27 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 const CotizadorContext = createContext()
 
-export const CotizadorProvider = ({ children }) => {  
-  
-  const hola = "Hola desde context"
+export const CotizadorProvider = ({ children }) => {
+
+  const [datos, setDatos] = useState({
+    marca: "",
+    year: "",
+    plan: ""
+  })
+  const handleChangeData = e => {
+    // tomo una copia del objeto para evitar pisar los datos
+    setDatos({
+      ...datos,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <CotizadorContext.Provider
       value={{
-        hola
+        datos,
+        handleChangeData
       }}
     >
       {children}
