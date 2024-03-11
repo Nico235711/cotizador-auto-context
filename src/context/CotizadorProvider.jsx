@@ -13,6 +13,7 @@ export const CotizadorProvider = ({ children }) => {
 
   const [error, setError] = useState("")
   const [cotizacion, setCotizacion] = useState(0)
+  const [cargando, setCargando] = useState(false)
 
   const handleChangeData = e => {
     // tomo una copia del objeto para evitar pisar los datos
@@ -42,7 +43,13 @@ export const CotizadorProvider = ({ children }) => {
     resultado *= cotizarPlan(datos.plan)
 
     resultado = formatearDinero(resultado)
-    setCotizacion(resultado)
+
+    setCargando(true)
+
+    setTimeout(() => {
+      setCotizacion(resultado)
+      setCargando(false)
+    }, 2000);
   }
 
   return (
@@ -53,7 +60,8 @@ export const CotizadorProvider = ({ children }) => {
         error,
         setError,
         cotizarSeguro,
-        cotizacion
+        cotizacion,
+        cargando
       }}
     >
       {children}
