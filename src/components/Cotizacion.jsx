@@ -9,11 +9,20 @@ export const Cotizacion = () => {
   const yearRef = useRef(year)
 
   // evitando los re-renders de react con useCallback
-  const [ nombreMarca ] = useCallback(
+  // const [ nombreMarca ] = useCallback(
+  //   marcas.filter(m => m.id === +marca), [cotizacion]
+  // )
+
+  // const [ nombrePlan ] = useCallback(
+  //   planes.filter(p => p.id === +plan), [cotizacion]
+  // )
+
+  // evitando los re-renders de react con useMemo
+  const [ nombreMarca ] = useMemo( () =>
     marcas.filter(m => m.id === +marca), [cotizacion]
   )
 
-  const [ nombrePlan ] = useCallback(
+  const [ nombrePlan ] = useMemo( () =>
     planes.filter(p => p.id === +plan), [cotizacion]
   )
 
